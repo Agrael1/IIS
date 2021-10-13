@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Používateľ: {{ user.username }}</h1>
+
+{% if user.admin %} <p>Rola: administrátor </p> {% endif %}
+{% if user.licitator %} <p>Rola: licitátor </p> {% endif %}
+
+
+{% if user.name %}<p>Meno: {{ user.name }}</p>{% endif %}
+{% if user.surname %}<p>Priezvisko: {{ user.surname }}</p>{% endif %}
+
+{% if user == current_user %}
+<p><a href="{{ url_for('edit_profile') }}">Zmeniť údaje</a></p>
+<p><a href="{{ url_for('add_estate') }}">Pridať položku</a></p>
+{% endif %}
+
+<h1>Moje položky: </h1>
+{% for item in items %}
+{% include '_items.html' %}
+{% endfor %}
+
+<h1>Moje aukcie: </h1>
+{% for auction in auctions %}
+{% include '_auction.html' %}
+{% endfor %}
+
+
+
+<hr>
+{% endblock %}

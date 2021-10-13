@@ -1,0 +1,54 @@
+<br />
+
+
+<div>Autor:
+    <a href="{{ url_for('auction_details', auction_id=auction.id) }}">
+        Id: {{ auction.id }}
+    </a>
+</div>
+
+<div>Autor:
+    <a href="{{ url_for('user', username=auction.creator.username) }}">
+        {{ auction.creator.username }}
+    </a>
+</div>
+
+<p>
+    Názov: {{ auction.name }}
+</p>
+
+<p>
+    Názov pozemku: {{ auction.item.name}}
+</p>
+<p>
+    Popis pozemku: {{ auction.item.description}}
+</p>
+<p>
+    Vyvolávacia cena: {{ auction.starting_prace }}
+</p>
+
+{% if auction.closed %}
+<p>
+    Typ: Uzavretá
+</p>
+{% else %}
+<p>
+    Typ: Otvorená
+</p>
+{% endif %}
+
+{% if auction.licitator == None %}
+<p>Čaká na schválenie</p>
+
+{% else %}
+<div>Licitátor:
+    <a href="{{ url_for('user', username=auction.licitator.username) }}">
+        {{ auction.licitator.username }}
+    </a>
+</div>
+{% endif %}
+
+
+
+
+<br />

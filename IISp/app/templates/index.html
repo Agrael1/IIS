@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Jú, {{ current_user.username }} sa registroval, takze moja stranka funguje!</h1>
+<h1>Uz som pomaly web developer!</h1>
+
+<form action="/make_admin" method="post">
+    <button name="admin_button" type="submit">Make me an admin</button>
+</form>
+<br>
+
+
+<form action="/make_licitator" method="post">
+    <button name="licitator_button" type="submit">Make me a licitator</button>
+</form>
+<br>
+
+<form action="/make_host" method="post">
+    <button name="host_button" type="submit">Make me a host</button>
+</form>
+{% endblock %}

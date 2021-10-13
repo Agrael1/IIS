@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+<head>
+    {% if title %}
+    <title>{{ title }} - IIS</title>
+    {% else %}
+    <title>IIS projekt</title>
+    {% endif %}
+</head>
+
+<body>
+    <div>Navbar zaklad:
+        <a href="{{ url_for('index') }}">Domov</a>
+        <a href="{{ url_for('auctions') }}">Aukcie</a>
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Prihlásiť</a>
+        {% else %}
+        <a href="{{ url_for('user', username=current_user.username) }}">Profil</a>
+        {% if current_user.licitator %}
+        <a href="{{ url_for('licitator') }}">Spravovať aukcie</a>
+        {% endif %}
+        <a href="{{ url_for('logout') }}">Odhlásiť</a>
+        {% endif %}
+    </div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</body>
+
+</html>

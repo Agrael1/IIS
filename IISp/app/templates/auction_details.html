@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>
+    Id: {{ auction.id }}
+</p>
+
+
+<div>Autor:
+    <a href="{{ url_for('user', username=auction.creator.username) }}">
+        {{ auction.creator.username }}
+    </a>
+</div>
+
+<p>
+    Názov: {{ auction.name }}
+</p>
+
+<p>
+    Názov pozemku: {{ auction.item.name}}
+</p>
+<p>
+    Popis pozemku: {{ auction.item.description}}
+</p>
+<p>
+    Vyvolávacia cena: {{ auction.starting_prace }}
+</p>
+
+{% if auction.closed %}
+<p>
+    Typ: Uzavretá
+</p>
+{% else %}
+<p>
+    Typ: Otvorená
+</p>
+{% endif %}
+
+{% if auction.creator.id == current_user.id %}
+<p><a href="{{ url_for('edit_auction', auction_id=auction.id) }}">Upraviť aukciu</a></p>
+<p><a href="{{ url_for('delete_auction', auction_id=auction.id) }}">Vymazať aukciu</a></p>
+{% endif %}
+
+
+
+
+
+{% endblock %}

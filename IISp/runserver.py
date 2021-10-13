@@ -3,7 +3,7 @@ This script runs the IISp application using a development server.
 """
 
 from os import environ
-from IISp import app
+from app import app
 
 if __name__ == '__main__':
     HOST = environ.get('SERVER_HOST', 'localhost')

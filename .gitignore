@@ -374,3 +374,4 @@ venv.bak/
 
 *.pyproj
 *.sln
+*.db
